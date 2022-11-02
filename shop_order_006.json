@@ -1,0 +1,890 @@
+{
+  "definitions" : {
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.Order" : {
+      "type" : "object",
+      "required" : [ "customer", "contact_address", "main_order", "sub_order" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "customer" : {
+          "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.Customer"
+        },
+        "contact_address" : {
+          "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.Address"
+        },
+        "main_order" : {
+          "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.MainOrder"
+        },
+        "sub_order" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.SubOrder"
+          }
+        }
+      }
+    },
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.Customer" : {
+      "type" : "object",
+      "required" : [ "krn", "personal_info", "contact_info", "business_info", "market_segment", "privacy_info", "loan_info", "customer_identification" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "krn" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "personal_info" : {
+          "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.PersonalInfo"
+        },
+        "contact_info" : {
+          "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.ContactInfo"
+        },
+        "business_info" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.BusinessInfo"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "market_segment" : {
+          "$ref" : "#/definitions/enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.MarketSegment"
+        },
+        "privacy_info" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.PrivacyInfo"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "loan_info" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.LoanInfo"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "customer_identification" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.CustomerIdentification"
+          }, {
+            "type" : "null"
+          } ]
+        }
+      }
+    },
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.PersonalInfo" : {
+      "type" : "object",
+      "required" : [ "last_name", "last_name_at_birth", "infix", "infix_at_birth", "initials", "gender", "date_of_birth" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "last_name" : {
+          "type" : "string"
+        },
+        "last_name_at_birth" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "infix" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "infix_at_birth" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "initials" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "gender" : {
+          "$ref" : "#/definitions/enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.Gender"
+        },
+        "date_of_birth" : {
+          "type" : "integer",
+          "minimum" : -2147483648,
+          "maximum" : 2147483647
+        }
+      }
+    },
+    "enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.Gender" : {
+      "enum" : [ "MALE", "FEMALE", "UNKNOWN" ]
+    },
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.ContactInfo" : {
+      "type" : "object",
+      "required" : [ "email", "phone_number", "phone_number_secondary" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "email" : {
+          "type" : "string"
+        },
+        "phone_number" : {
+          "type" : "string"
+        },
+        "phone_number_secondary" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        }
+      }
+    },
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.BusinessInfo" : {
+      "type" : "object",
+      "required" : [ "chambre_of_commerce", "company_name", "requestor_id" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "chambre_of_commerce" : {
+          "type" : "string"
+        },
+        "company_name" : {
+          "type" : "string"
+        },
+        "requestor_id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.MarketSegment" : {
+      "enum" : [ "CONSUMER", "SOHO", "BUSINESS" ]
+    },
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.PrivacyInfo" : {
+      "type" : "object",
+      "required" : [ "email", "sms", "phone" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "email" : {
+          "type" : "boolean"
+        },
+        "sms" : {
+          "type" : "boolean"
+        },
+        "phone" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.LoanInfo" : {
+      "type" : "object",
+      "required" : [ "max_credit_limit", "family_composition", "net_monthly_income", "net_monthly_cost_of_living", "days_of_daycare", "days_of_schoolcare", "type_costs_living", "amount_special_monthly_cost", "car_ownership" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "max_credit_limit" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "family_composition" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.FamilyComposition"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "net_monthly_income" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "net_monthly_cost_of_living" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "days_of_daycare" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "days_of_schoolcare" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "type_costs_living" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.TypeCostsLiving"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "amount_special_monthly_cost" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "car_ownership" : {
+          "oneOf" : [ {
+            "type" : "boolean"
+          }, {
+            "type" : "null"
+          } ]
+        }
+      }
+    },
+    "enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.FamilyComposition" : {
+      "enum" : [ "SINGLE", "SINGLE_WITH_CHILDREN", "COUPLE", "COUPLE_WITH_CHILDREN" ]
+    },
+    "enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.TypeCostsLiving" : {
+      "enum" : [ "rent", "mortgage" ]
+    },
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.CustomerIdentification" : {
+      "type" : "object",
+      "required" : [ "type", "id", "issued_on", "expires_on", "country" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "type" : {
+          "$ref" : "#/definitions/enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.IdType"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "issued_on" : {
+          "type" : "integer",
+          "minimum" : -2147483648,
+          "maximum" : 2147483647
+        },
+        "expires_on" : {
+          "type" : "integer",
+          "minimum" : -2147483648,
+          "maximum" : 2147483647
+        },
+        "country" : {
+          "type" : "string"
+        }
+      }
+    },
+    "enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.IdType" : {
+      "enum" : [ "PASSPORT", "FOREIGN_PASSPORT", "IDENTITY_CARD", "IDENTITY_CARD_EU", "DRIVERS_LICENSE", "DRIVER_LICENCE", "RESIDENCY_PERMIT_I", "RESIDENCY_PERMIT_II", "RESIDENCY_PERMIT_III", "RESIDENCY_PERMIT_IV", "RESIDENCY_PERMIT_V", "RESIDENCY_PERMIT_FAMILY_MEMBER_EU", "RESIDENCY_PERMIT_EU", "ARTICLE_50_PERMANENT_RESIDENT", "ARTICLE_50_RESIDENT", "IDENTITY_CARD_DIPLOMACY", "DIPLOMACY_PASSPORT" ]
+    },
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.Address" : {
+      "type" : "object",
+      "required" : [ "zip_code", "house_number", "house_number_ext", "room_number" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "zip_code" : {
+          "type" : "string"
+        },
+        "house_number" : {
+          "type" : "integer",
+          "minimum" : -2147483648,
+          "maximum" : 2147483647
+        },
+        "house_number_ext" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "room_number" : {
+          "oneOf" : [ {
+            "type" : "integer",
+            "minimum" : -2147483648,
+            "maximum" : 2147483647
+          }, {
+            "type" : "null"
+          } ]
+        }
+      }
+    },
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.MainOrder" : {
+      "type" : "object",
+      "required" : [ "creation_datetime", "updated_datetime", "originated_system", "order_id", "order_status", "cancel_reason", "cancel_datetime", "sales_channel", "user", "sales_point", "v_code", "price_incl_vat", "price_ex_vat", "payment_info", "transfer_info", "access_line_info", "engineer_appointment", "kam_response", "order_confirmation", "intake_confirmation", "rejection_confirmation" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "creation_datetime" : {
+          "type" : "string"
+        },
+        "updated_datetime" : {
+          "type" : "string"
+        },
+        "originated_system" : {
+          "$ref" : "#/definitions/enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.ShopId"
+        },
+        "order_id" : {
+          "type" : "string"
+        },
+        "order_status" : {
+          "$ref" : "#/definitions/enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.OrderStatus"
+        },
+        "cancel_reason" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.CancelReason"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "cancel_datetime" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "sales_channel" : {
+          "$ref" : "#/definitions/enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.SalesChannel"
+        },
+        "user" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "sales_point" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "v_code" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "price_incl_vat" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.Price"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "price_ex_vat" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.Price"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "payment_info" : {
+          "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.PaymentInfo"
+        },
+        "transfer_info" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.TransferInfo"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "access_line_info" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.AccessLineInfo"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "engineer_appointment" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.EngineerAppointment"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "kam_response" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.KAMResponse"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "order_confirmation" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "intake_confirmation" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "rejection_confirmation" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        }
+      }
+    },
+    "enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.ShopId" : {
+      "enum" : [ "SISH", "S", "ARMOR", "PEGA" ]
+    },
+    "enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.OrderStatus" : {
+      "enum" : [ "PREPARING", "READY_TO_PROCESS", "PROCESSING", "PENDING", "COMPLETED", "CANCELLED", "PROCESSED_ERROR", "PROCESSED_SUCCESS" ]
+    },
+    "enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.CancelReason" : {
+      "enum" : [ "FRAUD_DETECTED", "KAM_REJECTION", "NOT_PAID", "OUTBOUND_NOK" ]
+    },
+    "enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.SalesChannel" : {
+      "enum" : [ "INBOUND", "RETAIL", "ONLINE", "OUTBOUND", "DEALER", "OTHER", "ETAIL", "EXTERNE_RETAIL" ]
+    },
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.Price" : {
+      "type" : "object",
+      "required" : [ "total_price_one_time", "total_price_recurring", "total_loan", "total_current_price_recurring" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "total_price_one_time" : {
+          "type" : "number"
+        },
+        "total_price_recurring" : {
+          "type" : "number"
+        },
+        "total_loan" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "total_current_price_recurring" : {
+          "type" : "number"
+        }
+      }
+    },
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.PaymentInfo" : {
+      "type" : "object",
+      "required" : [ "upfront_payment_made", "upfront_payment_amount", "upfront_payment_method" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "upfront_payment_made" : {
+          "type" : "boolean"
+        },
+        "upfront_payment_amount" : {
+          "oneOf" : [ {
+            "type" : "number"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "upfront_payment_method" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.PaymentMethod"
+          }, {
+            "type" : "null"
+          } ]
+        }
+      }
+    },
+    "enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.PaymentMethod" : {
+      "enum" : [ "IDEAL", "CREDITCARD", "ON_DELIVERY", "INVOICE", "KASSA" ]
+    },
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.TransferInfo" : {
+      "type" : "object",
+      "required" : [ "isp_id", "isp_name" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "isp_id" : {
+          "type" : "string"
+        },
+        "isp_name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.AccessLineInfo" : {
+      "type" : "object",
+      "required" : [ "has_pin", "has_alarm", "bb_owned", "migrate_bb", "tf_owned", "migrate_tf", "sole_resident" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "has_pin" : {
+          "oneOf" : [ {
+            "type" : "boolean"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "has_alarm" : {
+          "oneOf" : [ {
+            "type" : "boolean"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "bb_owned" : {
+          "oneOf" : [ {
+            "type" : "boolean"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "migrate_bb" : {
+          "oneOf" : [ {
+            "type" : "boolean"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "tf_owned" : {
+          "oneOf" : [ {
+            "type" : "boolean"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "migrate_tf" : {
+          "oneOf" : [ {
+            "type" : "boolean"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "sole_resident" : {
+          "oneOf" : [ {
+            "type" : "boolean"
+          }, {
+            "type" : "null"
+          } ]
+        }
+      }
+    },
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.EngineerAppointment" : {
+      "type" : "object",
+      "required" : [ "appointment_id", "appointment_slot" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "appointment_id" : {
+          "type" : "string"
+        },
+        "appointment_slot" : {
+          "type" : "integer",
+          "minimum" : -2147483648,
+          "maximum" : 2147483647
+        }
+      }
+    },
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.KAMResponse" : {
+      "type" : "object",
+      "required" : [ "kam_result", "kam_id" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "kam_result" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "kam_id" : {
+          "type" : "string"
+        }
+      }
+    },
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.SubOrder" : {
+      "type" : "object",
+      "required" : [ "sub_order_id", "sub_order_type", "boss_id", "boss_billing_id", "siebel_customer_id", "products", "vouchers", "wish_date", "wish_date_old_address", "precheck_id", "aos", "delivery_method", "status", "fallback_reason", "fallback_datetime", "renewal_mobile_number", "imei_number", "sim_card_number", "contract_duration", "payment_id", "service_address", "shipping_address", "billing_address", "future_address", "number_porting", "precheck_result", "save_order_exception" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "sub_order_id" : {
+          "type" : "string"
+        },
+        "sub_order_type" : {
+          "$ref" : "#/definitions/enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.SubOrderType"
+        },
+        "boss_id" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "boss_billing_id" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "siebel_customer_id" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "products" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.Product"
+          }
+        },
+        "vouchers" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "wish_date" : {
+          "oneOf" : [ {
+            "type" : "integer",
+            "minimum" : -2147483648,
+            "maximum" : 2147483647
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "wish_date_old_address" : {
+          "oneOf" : [ {
+            "type" : "integer",
+            "minimum" : -2147483648,
+            "maximum" : 2147483647
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "precheck_id" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "aos" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "delivery_method" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.DeliveryMethod"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "status" : {
+          "$ref" : "#/definitions/enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.SubOrderStatus"
+        },
+        "fallback_reason" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "fallback_datetime" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "renewal_mobile_number" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "imei_number" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "sim_card_number" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "contract_duration" : {
+          "oneOf" : [ {
+            "type" : "integer",
+            "minimum" : -2147483648,
+            "maximum" : 2147483647
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "payment_id" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "service_address" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.Address"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "shipping_address" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.Address"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "billing_address" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.Address"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "future_address" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.Address"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "number_porting" : {
+          "oneOf" : [ {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.NumberPorting"
+            }
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "precheck_result" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "save_order_exception" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        }
+      }
+    },
+    "enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.SubOrderType" : {
+      "enum" : [ "RSD_NEW", "RSD_CHANGE", "RSD_MOVE", "MOB_NEW", "MOB_CHANGE", "MOB_RENEW", "MOB", "MOB_P2P", "PREORDER" ]
+    },
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.Product" : {
+      "type" : "object",
+      "required" : [ "id", "action", "price", "campaign" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "action" : {
+          "$ref" : "#/definitions/enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.ProductAction"
+        },
+        "price" : {
+          "type" : "number"
+        },
+        "campaign" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.ProductCampaign"
+          }, {
+            "type" : "null"
+          } ]
+        }
+      }
+    },
+    "enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.ProductAction" : {
+      "enum" : [ "ADD", "DELETE", "NO_CHANGE" ]
+    },
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.ProductCampaign" : {
+      "type" : "object",
+      "required" : [ "id", "type" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.DeliveryMethod" : {
+      "enum" : [ "HOME_DELIVERY", "SMART_DELIVERY", "PUDO", "MAIL_PACKAGE", "BRIEF_DELIVERY", "STORE" ]
+    },
+    "enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.SubOrderStatus" : {
+      "enum" : [ "PENDING", "COMPLETED", "FALLBACK", "CANCELLED", "PROCESSED_SUCCESS" ]
+    },
+    "record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.NumberPorting" : {
+      "type" : "object",
+      "required" : [ "phone_number", "current_contract_handling", "type", "customer_id", "porting_address" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "phone_number" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "current_contract_handling" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.CurrentContractHandling"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "type" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "customer_id" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "porting_address" : {
+          "oneOf" : [ {
+            "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.Address"
+          }, {
+            "type" : "null"
+          } ]
+        }
+      }
+    },
+    "enum:com.kpn.datalab.schemas.shop_order.order.v0_0_6.CurrentContractHandling" : {
+      "enum" : [ "EARLY_TERMINATION", "CONTINUATION_CONTRACT", "WHEN_CONTRACT_ENDS" ]
+    }
+  },
+  "$ref" : "#/definitions/record:com.kpn.datalab.schemas.shop_order.order.v0_0_6.Order"
+}

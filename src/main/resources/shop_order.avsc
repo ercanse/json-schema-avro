@@ -1,0 +1,545 @@
+{
+  "type" : "record",
+  "name" : "Order",
+  "namespace" : "com.kpn.datalab.schemas.shop_order.order.v0_0_1",
+  "fields" : [ {
+    "name" : "customer",
+    "type" : {
+      "type" : "record",
+      "name" : "Customer",
+      "fields" : [ {
+        "name" : "krn",
+        "type" : "string"
+      }, {
+        "name" : "personal_info",
+        "type" : {
+          "type" : "record",
+          "name" : "PersonalInfo",
+          "fields" : [ {
+            "name" : "last_name",
+            "type" : "string"
+          }, {
+            "name" : "last_name_at_birth",
+            "type" : [ "string", "null" ]
+          }, {
+            "name" : "infix",
+            "type" : [ "string", "null" ]
+          }, {
+            "name" : "infix_at_birth",
+            "type" : [ "string", "null" ]
+          }, {
+            "name" : "initials",
+            "type" : "string"
+          }, {
+            "name" : "gender",
+            "type" : {
+              "type" : "enum",
+              "name" : "Gender",
+              "symbols" : [ "MALE", "FEMALE", "X" ]
+            }
+          }, {
+            "name" : "date_of_birth",
+            "type" : {
+              "type" : "int",
+              "logicalType" : "date"
+            }
+          } ]
+        }
+      }, {
+        "name" : "contact_info",
+        "type" : {
+          "type" : "record",
+          "name" : "ContactInfo",
+          "fields" : [ {
+            "name" : "email",
+            "type" : "string"
+          }, {
+            "name" : "phone_number",
+            "type" : "string"
+          }, {
+            "name" : "phone_number_secondary",
+            "type" : [ "string", "null" ]
+          } ]
+        }
+      }, {
+        "name" : "business_info",
+        "type" : [ {
+          "type" : "record",
+          "name" : "BusinessInfo",
+          "fields" : [ {
+            "name" : "chambre_of_commerce",
+            "type" : "string"
+          }, {
+            "name" : "company_name",
+            "type" : "string"
+          }, {
+            "name" : "requestor_id",
+            "type" : "string"
+          } ]
+        }, "null" ]
+      }, {
+        "name" : "market_segment",
+        "type" : {
+          "type" : "enum",
+          "name" : "MarketSegment",
+          "symbols" : [ "CONSUMER", "SOHO", "BUSINESS" ]
+        }
+      }, {
+        "name" : "privacy_info",
+        "type" : [ {
+          "type" : "record",
+          "name" : "PrivacyInfo",
+          "fields" : [ {
+            "name" : "email",
+            "type" : "boolean"
+          }, {
+            "name" : "sms",
+            "type" : "boolean"
+          }, {
+            "name" : "phone",
+            "type" : "boolean"
+          } ]
+        }, "null" ]
+      }, {
+        "name" : "loan_info",
+        "type" : [ {
+          "type" : "record",
+          "name" : "LoanInfo",
+          "fields" : [ {
+            "name" : "max_credit_limit",
+            "type" : "double"
+          }, {
+            "name" : "family_composition",
+            "type" : {
+              "type" : "enum",
+              "name" : "FamilyComposition",
+              "symbols" : [ "SINGLE", "SINGLEKIDS", "MARRIED", "MARRIEDKIDS" ]
+            }
+          }, {
+            "name" : "net_monthly_income",
+            "type" : "double"
+          }, {
+            "name" : "net_monthly_cost_of_living",
+            "type" : "double"
+          }, {
+            "name" : "days_of_daycare",
+            "type" : [ "int", "null" ]
+          }, {
+            "name" : "days_of_schoolcare",
+            "type" : [ "int", "null" ]
+          }, {
+            "name" : "type_costs_living",
+            "type" : {
+              "type" : "enum",
+              "name" : "TypeCostsLiving",
+              "symbols" : [ "RENT", "MORGAGE" ]
+            }
+          }, {
+            "name" : "amount_special_monthly_cost",
+            "type" : "double"
+          }, {
+            "name" : "car_ownership",
+            "type" : "boolean"
+          } ]
+        }, "null" ]
+      }, {
+        "name" : "customer_identification",
+        "type" : [ {
+          "type" : "record",
+          "name" : "CustomerIdentification",
+          "fields" : [ {
+            "name" : "type",
+            "type" : {
+              "type" : "enum",
+              "name" : "IdType",
+              "symbols" : [ "PASSPORT", "FOREIGN_PASSPORT", "IDENTITY_CARD", "IDENTITY_CARD_EU", "DRIVERS_LICENSE", "DRIVER_LICENCE", "RESIDENCY_PERMIT_I", "RESIDENCY_PERMIT_II", "RESIDENCY_PERMIT_III", "RESIDENCY_PERMIT_IV", "RESIDENCY_PERMIT_V", "RESIDENCY_PERMIT_FAMILY_MEMBER_EU", "RESIDENCY_PERMIT_EU", "ARTICLE_50_PERMANENT_RESIDENT", "ARTICLE_50_RESIDENT", "IDENTITY_CARD_DIPLOMACY", "DIPLOMACY_PASSPORT" ]
+            }
+          }, {
+            "name" : "id",
+            "type" : "string"
+          }, {
+            "name" : "issued_on",
+            "type" : {
+              "type" : "int",
+              "logicalType" : "date"
+            }
+          }, {
+            "name" : "expires_on",
+            "type" : {
+              "type" : "int",
+              "logicalType" : "date"
+            }
+          }, {
+            "name" : "country",
+            "type" : "string"
+          } ]
+        }, "null" ]
+      } ]
+    }
+  }, {
+    "name" : "contact_address",
+    "type" : {
+      "type" : "record",
+      "name" : "Address",
+      "fields" : [ {
+        "name" : "zip_code",
+        "type" : "string"
+      }, {
+        "name" : "house_number",
+        "type" : "int"
+      }, {
+        "name" : "house_number_ext",
+        "type" : [ "string", "null" ]
+      }, {
+        "name" : "room_number",
+        "type" : [ "int", "null" ]
+      } ]
+    }
+  }, {
+    "name" : "main_order",
+    "type" : {
+      "type" : "record",
+      "name" : "MainOrder",
+      "fields" : [ {
+        "name" : "creation_datetime",
+        "type" : "string"
+      }, {
+        "name" : "updated_datetime",
+        "type" : "string"
+      }, {
+        "name" : "originated_system",
+        "type" : {
+          "type" : "enum",
+          "name" : "ShopId",
+          "symbols" : [ "SISH", "S", "ARMOR", "PEGA" ]
+        }
+      }, {
+        "name" : "order_id",
+        "type" : "string"
+      }, {
+        "name" : "order_status",
+        "type" : {
+          "type" : "enum",
+          "name" : "OrderStatus",
+          "symbols" : [ "NEW", "PENDING", "COMPLETED", "CANCELLED" ]
+        }
+      }, {
+        "name" : "cancel_reason",
+        "type" : [ {
+          "type" : "enum",
+          "name" : "CancelReason",
+          "symbols" : [ "FRAUD_DETECTED", "KAM_REJECTION", "NOT_PAID", "OUTBOUND_NOK" ]
+        }, "null" ]
+      }, {
+        "name" : "cancel_datetime",
+        "type" : [ "string", "null" ]
+      }, {
+        "name" : "sales_channel",
+        "type" : {
+          "type" : "enum",
+          "name" : "SalesChannel",
+          "symbols" : [ "INBOUND", "RETAIL", "ONLINE", "OUTBOUND", "DEALER", "OTHER", "ETAIL", "EXTERNE_RETAIL" ]
+        }
+      }, {
+        "name" : "user",
+        "type" : [ "string", "null" ]
+      }, {
+        "name" : "sales_point",
+        "type" : [ "string", "null" ]
+      }, {
+        "name" : "v_code",
+        "type" : [ "string", "null" ]
+      }, {
+        "name" : "price_incl_vat",
+        "type" : [ {
+          "type" : "record",
+          "name" : "Price",
+          "fields" : [ {
+            "name" : "total_price_one_time",
+            "type" : "double"
+          }, {
+            "name" : "total_price_recurring",
+            "type" : "double"
+          }, {
+            "name" : "total_loan",
+            "type" : [ "double", "null" ]
+          }, {
+            "name" : "total_current_price_recurring",
+            "type" : "double"
+          } ]
+        }, "null" ]
+      }, {
+        "name" : "price_ex_vat",
+        "type" : [ "Price", "null" ]
+      }, {
+        "name" : "payment_info",
+        "type" : {
+          "type" : "record",
+          "name" : "PaymentInfo",
+          "fields" : [ {
+            "name" : "upfront_payment_made",
+            "type" : "boolean"
+          }, {
+            "name" : "upfront_payment_amount",
+            "type" : [ "double", "null" ]
+          }, {
+            "name" : "upfront_payment_method",
+            "type" : [ {
+              "type" : "enum",
+              "name" : "PaymentMethod",
+              "symbols" : [ "IDEAL", "CREDITCARD", "ON_DELIVERY", "KASSA" ]
+            }, "null" ]
+          } ]
+        }
+      }, {
+        "name" : "transfer_info",
+        "type" : [ {
+          "type" : "record",
+          "name" : "TransferInfo",
+          "fields" : [ {
+            "name" : "isp_id",
+            "type" : {
+              "type" : "enum",
+              "name" : "ISPID",
+              "symbols" : [ "TMOBILE", "WANA", "TELE2", "XS4ALL", "ZIGGO", "DELTA", "NLEX", "OTHER" ]
+            }
+          }, {
+            "name" : "isp_name",
+            "type" : "string"
+          } ]
+        }, "null" ]
+      }, {
+        "name" : "access_line_info",
+        "type" : [ {
+          "type" : "record",
+          "name" : "AccessLineInfo",
+          "fields" : [ {
+            "name" : "has_pin",
+            "type" : [ "boolean", "null" ]
+          }, {
+            "name" : "has_alarm",
+            "type" : [ "boolean", "null" ]
+          }, {
+            "name" : "bb_owned",
+            "type" : [ "boolean", "null" ]
+          }, {
+            "name" : "migrate_bb",
+            "type" : [ "boolean", "null" ]
+          }, {
+            "name" : "tf_owned",
+            "type" : [ "boolean", "null" ]
+          }, {
+            "name" : "migrate_tf",
+            "type" : [ "boolean", "null" ]
+          }, {
+            "name" : "sole_resident",
+            "type" : [ "boolean", "null" ]
+          } ]
+        }, "null" ]
+      }, {
+        "name" : "engineer_appointment",
+        "type" : [ {
+          "type" : "record",
+          "name" : "EngineerAppointment",
+          "fields" : [ {
+            "name" : "appointment_id",
+            "type" : "string"
+          }, {
+            "name" : "appointment_slot",
+            "type" : {
+              "type" : "int",
+              "logicalType" : "date"
+            }
+          } ]
+        }, "null" ]
+      }, {
+        "name" : "kam_response",
+        "type" : [ {
+          "type" : "record",
+          "name" : "KAMResponse",
+          "fields" : [ {
+            "name" : "kam_result",
+            "type" : {
+              "type" : "array",
+              "items" : {
+                "type" : "enum",
+                "name" : "KAMResult",
+                "symbols" : [ "A001", "A002", "A003", "A004", "A006", "A007", "A008", "A011", "A012", "A013", "A015", "A019", "A021", "D001", "D002", "D003", "D004", "D005", "D006", "D007", "D008", "D009", "D010", "D014", "D106", "D300", "D501", "D600", "D701", "D900" ]
+              }
+            }
+          }, {
+            "name" : "kam_id",
+            "type" : "string"
+          } ]
+        }, "null" ]
+      }, {
+        "name" : "order_confirmation",
+        "type" : "string"
+      }, {
+        "name" : "intake_confirmation",
+        "type" : [ "string", "null" ]
+      }, {
+        "name" : "rejection_confirmation",
+        "type" : [ "string", "null" ]
+      } ]
+    }
+  }, {
+    "name" : "sub_order",
+    "type" : {
+      "type" : "array",
+      "items" : {
+        "type" : "record",
+        "name" : "SubOrder",
+        "fields" : [ {
+          "name" : "sub_order_id",
+          "type" : "string"
+        }, {
+          "name" : "sub_order_type",
+          "type" : {
+            "type" : "enum",
+            "name" : "SubOrderType",
+            "symbols" : [ "RSD_NEW", "RSD_CHANGE", "RSD_MOVE", "MOB_NEW", "MOB_CHANGE", "MOB_RENEW", "MOB", "PREORDER" ]
+          }
+        }, {
+          "name" : "boss_id",
+          "type" : [ "string", "null" ]
+        }, {
+          "name" : "boss_billing_id",
+          "type" : [ "string", "null" ]
+        }, {
+          "name" : "siebel_customer_id",
+          "type" : [ "string", "null" ]
+        }, {
+          "name" : "products",
+          "type" : {
+            "type" : "array",
+            "items" : {
+              "type" : "record",
+              "name" : "Product",
+              "fields" : [ {
+                "name" : "id",
+                "type" : "string"
+              }, {
+                "name" : "action",
+                "type" : {
+                  "type" : "enum",
+                  "name" : "ProductAction",
+                  "symbols" : [ "ADD", "DELETE", "NO_CHANGE" ]
+                }
+              }, {
+                "name" : "price",
+                "type" : "double"
+              }, {
+                "name" : "campaign",
+                "type" : [ {
+                  "type" : "record",
+                  "name" : "ProductCampaign",
+                  "fields" : [ {
+                    "name" : "id",
+                    "type" : "string"
+                  }, {
+                    "name" : "type",
+                    "type" : "string"
+                  } ]
+                }, "null" ]
+              } ]
+            }
+          }
+        }, {
+          "name" : "vouchers",
+          "type" : {
+            "type" : "array",
+            "items" : "string"
+          }
+        }, {
+          "name" : "wish_date",
+          "type" : [ {
+            "type" : "int",
+            "logicalType" : "date"
+          }, "null" ]
+        }, {
+          "name" : "wish_date_old_address",
+          "type" : [ {
+            "type" : "int",
+            "logicalType" : "date"
+          }, "null" ]
+        }, {
+          "name" : "precheck_id",
+          "type" : [ "string", "null" ]
+        }, {
+          "name" : "aos",
+          "type" : [ "string", "null" ]
+        }, {
+          "name" : "delivery_method",
+          "type" : [ {
+            "type" : "enum",
+            "name" : "DeliveryMethod",
+            "symbols" : [ "HOME_DELIVERY", "SMART_DELIVERY", "PUDO", "MAIL_PACKAGE", "BRIEF_DELIVERY", "STORE" ]
+          }, "null" ]
+        }, {
+          "name" : "status",
+          "type" : {
+            "type" : "enum",
+            "name" : "SubOrderStatus",
+            "symbols" : [ "PENDING", "COMPLETED", "FALLBACK", "CANCELLED", "PROCESSED_SUCCESS" ]
+          }
+        }, {
+          "name" : "fallback_reason",
+          "type" : [ "string", "null" ]
+        }, {
+          "name" : "fallback_datetime",
+          "type" : [ "string", "null" ]
+        }, {
+          "name" : "renewal_mobile_number",
+          "type" : [ "string", "null" ]
+        }, {
+          "name" : "imei_number",
+          "type" : [ "string", "null" ]
+        }, {
+          "name" : "sim_card_number",
+          "type" : [ "string", "null" ]
+        }, {
+          "name" : "contract_duration",
+          "type" : [ "int", "null" ]
+        }, {
+          "name" : "payment_id",
+          "type" : [ "string", "null" ]
+        }, {
+          "name" : "service_address",
+          "type" : [ "Address", "null" ]
+        }, {
+          "name" : "shipping_address",
+          "type" : [ "Address", "null" ]
+        }, {
+          "name" : "billing_address",
+          "type" : [ "Address", "null" ]
+        }, {
+          "name" : "future_address",
+          "type" : [ "Address", "null" ]
+        }, {
+          "name" : "number_porting",
+          "type" : [ {
+            "type" : "array",
+            "items" : {
+              "type" : "record",
+              "name" : "NumberPorting",
+              "fields" : [ {
+                "name" : "phone_number",
+                "type" : [ "string", "null" ]
+              }, {
+                "name" : "type",
+                "type" : [ "string", "null" ]
+              }, {
+                "name" : "customer_id",
+                "type" : [ "string", "null" ]
+              }, {
+                "name" : "porting_address",
+                "type" : [ "Address", "null" ]
+              } ]
+            }
+          }, "null" ]
+        } ]
+      }
+    }
+  } ]
+}

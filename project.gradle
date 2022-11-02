@@ -32,6 +32,7 @@ project.ext {
  * List of dependencies
  */
 dependencies {
+    compile(group: "org.slf4j", name: "slf4j-simple", version: "1.7.36");
     compile(group: "com.github.java-json-tools", name: "json-schema-core",
         version: "1.2.14");
     compile(group: "com.github.java-json-tools", name: "json-schema-validator",
@@ -61,11 +62,17 @@ javadoc.options {
     }
     links("https://docs.oracle.com/javase/7/docs/api/");
     links("https://www.javadoc.io/doc/com.google.code.findbugs/jsr305/3.0.2/");
-    links("https://fasterxml.github.com/jackson-databind/javadoc/2.11/");
-    links("https://fasterxml.github.com/jackson-core/javadoc/2.11/");
-    links("https://fasterxml.github.com/jackson-annotations/javadoc/2.11/");
+//    links("https://fasterxml.github.com/jackson-databind/javadoc/2.11/");
+//    links("https://fasterxml.github.com/jackson-core/javadoc/2.11/");
+//    links("https://fasterxml.github.com/jackson-annotations/javadoc/2.11/");
     links("https://www.javadoc.io/doc/com.google.guava/guava/28.2-android/");
     links("https://java-json-tools.github.io/msg-simple/");
     links("https://java-json-tools.github.io/json-schema-core/1.2.x/");
     links("https://java-json-tools.github.io/json-schema-validator/2.2.x/");
+}
+
+task(runMain, dependsOn: 'classes', type: JavaExec) {
+//    main = 'main.java.com.github.fge.Main'
+    main = 'com.github.fge.Main'
+    classpath = sourceSets.main.runtimeClasspath
 }
